@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Fajar Nur Prasetyo | 1122100007</string>
     <string name="author" translatable="false">Fajar Nur Prasetyo</string>
-    <string name="NIM" translatable="false">11221100007</string>
+    <string name="NIM" translatable="false">1122100007</string>
     <string name="info">Info</string>
     <string name="send">Send</string>
     <string name="endpoint" translatable="false">https://wsapi.simsimi.com/190410/talk</string>
