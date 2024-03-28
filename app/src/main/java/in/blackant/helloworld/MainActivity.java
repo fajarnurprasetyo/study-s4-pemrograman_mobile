@@ -1,5 +1,6 @@
 package in.blackant.helloworld;
 
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
     private MessageAdapter mAdapter;
     private RequestQueue mQueue;
+    private static boolean firstOpen = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,32 +49,42 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding.messageContainer.setLayoutManager(new LinearLayoutManager(this));
         mBinding.messageContainer.setAdapter(mAdapter);
-
         mBinding.sendButton.setOnClickListener((v) -> {
             final Editable message = mBinding.messageInput.getText();
             if (message.length() > 0) {
-                mBinding.sendButton.setEnabled(false);
                 final String text = message.toString();
-                final SimiRequest req = new SimiRequest(this, text, res -> {
-                    try {
-                        if (res.getInt("status") == 200) {
-                            mAdapter.addMessage(res.getString("atext"), false);
+                if (mBinding.botCheckBox.isChecked()) {
+                    mBinding.sendButton.setEnabled(false);
+                    final SimiRequest req = new SimiRequest(this, text, res -> {
+                        try {
+                            if (res.getInt("status") == 200) {
+                                mAdapter.addMessage(Uri.decode(res.getString("atext")), false);
+                            }
+                        } catch (JSONException err) {
+                            Log.e("SIMI", err.toString());
                         }
-                    } catch (JSONException err) {
+                        mBinding.sendButton.setEnabled(true);
+                    }, err -> {
                         Log.e("SIMI", err.toString());
-                    }
-                    mBinding.sendButton.setEnabled(true);
-                }, err -> {
-                    Log.e("SIMI", err.toString());
-                    mBinding.sendButton.setEnabled(true);
-                });
-                mQueue.add(req);
+                        mBinding.sendButton.setEnabled(true);
+                    });
+                    mQueue.add(req);
+                }
                 mAdapter.addMessage(text, true);
                 message.clear();
             }
         });
 
         setContentView(mBinding.getRoot());
+        if (firstOpen) {
+            firstOpen = false;
+            openAboutActivity();
+        }
+    }
+
+    private void openAboutActivity() {
+        final Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -84,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_info) {
-//            TODO: Open about dialog
+          openAboutActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);

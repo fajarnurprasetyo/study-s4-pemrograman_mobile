@@ -32,6 +32,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
+
+val markwonVersion by extra { "4.6.2" }
+
 dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -39,7 +42,10 @@ dependencies {
     implementation(libs.constraintlayout)
 
     implementation("com.android.volley:volley:1.2.1")
-    implementation("io.noties.markwon:core:4.6.2")
+    implementation("io.noties.markwon:core:$markwonVersion")
+    implementation("io.noties.markwon:html:$markwonVersion")
+    implementation("io.noties.markwon:image:$markwonVersion")
+    implementation("com.caverock:androidsvg-aar:1.4")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

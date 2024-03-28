@@ -8,4 +8,5 @@
     <string name="api_key" translatable="false">UUNAS5LMqOrjrZoqcjGbxXrPU.IIBGI5g1jr1B~H</string>
     <string name="request_data" translatable="false">{\"utext\":\"%s\",\"lang\":\"id\"}</string>
     <string name="type_message">Type message</string>
+    <string name="about">About</string>
 </resources>

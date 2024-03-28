@@ -1,6 +1,7 @@
 package in.blackant.helloworld;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,13 @@ import java.util.List;
 import io.noties.markwon.Markwon;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+    private final Context mContext;
     private final Markwon markwon;
     private final List<Message> messages = new ArrayList<>();
 
     public MessageAdapter(Context context) {
-        markwon = Markwon.create(context);
+        mContext = context;
+        markwon = Markwon.create(mContext);
     }
 
     @NonNull
@@ -42,6 +45,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void addMessage(String text, boolean isUser) {
         messages.add(new Message(text, isUser));
         notifyItemInserted(getItemCount() - 1);
+        final MediaPlayer mp = MediaPlayer.create(mContext, isUser ? R.raw.outgoing : R.raw.incoming);
+        mp.setOnCompletionListener(MediaPlayer::release);
+        mp.start();
     }
 
     static public class Message {
