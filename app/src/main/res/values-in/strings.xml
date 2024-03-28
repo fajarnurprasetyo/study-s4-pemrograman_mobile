@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="info">Info</string>
+    <string name="send">Kirim</string>
+    <string name="type_message">Ketik pesan</string>
+</resources>
