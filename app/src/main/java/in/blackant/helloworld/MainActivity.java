@@ -1,40 +1,34 @@
 package in.blackant.helloworld;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import androidx.core.text.HtmlCompat;
 
 import in.blackant.helloworld.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
-    private MessageAdapter mAdapter;
-    private RequestQueue mQueue;
-    private static boolean firstOpen = true;
+    private boolean firstOpen = true;
+
+    private String getInput() {
+        return mBinding.input.getText().toString();
+    }
+
+    private void setResult(String text) {
+        mBinding.result.setText(text);
+    }
+
+    private void setResult(Spanned spanned) {
+        mBinding.result.setText(spanned);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,44 +36,28 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        mAdapter = new MessageAdapter(this);
-        mQueue = Volley.newRequestQueue(this);
 
         setSupportActionBar(mBinding.toolbar);
-
-        mBinding.messageContainer.setLayoutManager(new LinearLayoutManager(this));
-        mBinding.messageContainer.setAdapter(mAdapter);
-        mBinding.sendButton.setOnClickListener((v) -> {
-            final Editable message = mBinding.messageInput.getText();
-            if (message.length() > 0) {
-                final String text = message.toString();
-                if (mBinding.botCheckBox.isChecked()) {
-                    mBinding.sendButton.setEnabled(false);
-                    final SimiRequest req = new SimiRequest(this, text, res -> {
-                        try {
-                            if (res.getInt("status") == 200) {
-                                mAdapter.addMessage(Uri.decode(res.getString("atext")), false);
-                            }
-                        } catch (JSONException err) {
-                            Log.e("SIMI", err.toString());
-                        }
-                        mBinding.sendButton.setEnabled(true);
-                    }, err -> {
-                        Log.e("SIMI", err.toString());
-                        mBinding.sendButton.setEnabled(true);
-                    });
-                    mQueue.add(req);
-                }
-                mAdapter.addMessage(text, true);
-                message.clear();
-            }
-        });
 
         setContentView(mBinding.getRoot());
         if (firstOpen) {
             firstOpen = false;
             openAboutActivity();
         }
+
+        mBinding.send1.setText(String.format(getString(R.string.send), 1));
+        mBinding.send2.setText(String.format(getString(R.string.send), 2));
+
+        mBinding.send1.setOnClickListener((v) -> setResult(getInput()));
+        mBinding.send2.setOnClickListener((v) -> {
+            final String text = getInput();
+            setResult(Html.fromHtml(
+                    "<div>" + text + "</div>" +
+                            "<div><i>" + text + "</i></div>" +
+                            "<div><b>" + text + "</b></div>" +
+                            "<div><b><i>" + text + "</i></b></div>"
+                    , HtmlCompat.FROM_HTML_MODE_LEGACY));
+        });
     }
 
     private void openAboutActivity() {
@@ -96,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_info) {
-          openAboutActivity();
+            openAboutActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);
