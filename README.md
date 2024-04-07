@@ -1,1 +1,1 @@
-[README](app/src/main/assets/README.md)
+app/src/main/assets/README.md
