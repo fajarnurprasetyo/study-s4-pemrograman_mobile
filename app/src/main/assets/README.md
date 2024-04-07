@@ -11,8 +11,3 @@
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://www.instagram.com/fajarnurprasetyo.2)
 [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white)](https://www.youtube.com/@fajarnurprasetyo.2)
 [![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://github.com/fajarnurprasetyo/study-s4_pemrograman-mobile)
-
-## Powered By
-<a href="https://simsimi.com">
-  <img width="50%" alt="Simsimi" src="https://simsimi.com/_nuxt/img/simsimi_wordmark.dfe2a97.svg" />
-</a>
