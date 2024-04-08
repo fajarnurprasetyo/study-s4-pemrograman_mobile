@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CheckBox;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -27,18 +29,19 @@ public class MainActivity extends AppCompatActivity {
         final ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setSupportActionBar(binding.toolbar);
 
-        binding.rectangle.setOnClickListener((v) -> openCalculatorActivity(v.getId()));
-        binding.triangle.setOnClickListener((v) -> openCalculatorActivity(v.getId()));
-        binding.circle.setOnClickListener((v) -> openCalculatorActivity(v.getId()));
-        binding.ellipse.setOnClickListener((v) -> openCalculatorActivity(v.getId()));
+        final View.OnClickListener listener = (v) -> {
+            final CheckBox cb = (CheckBox) v;
+            if (cb.getId() == R.id.cb1) {
+                binding.tv1.setText(cb.isChecked() ? "12.000" : "0");
+            } else if (cb.getId() == R.id.cb2) {
+                binding.tv2.setText(cb.isChecked() ? "8.000" : "0");
+            }
+        };
+
+        binding.cb1.setOnClickListener(listener);
+        binding.cb2.setOnClickListener(listener);
 
         setContentView(binding.getRoot());
-    }
-
-    private void openCalculatorActivity(int shape_id) {
-        final Intent intent = new Intent(this, CalculatorActivity.class);
-        intent.putExtra("shape_id", shape_id);
-        startActivity(intent);
     }
 
     private void openAboutActivity() {

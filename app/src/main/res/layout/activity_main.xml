@@ -39,29 +39,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar">
 
-        <Button
-            android:id="@+id/rectangle"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rectangle" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/triangle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/triangle" />
+            <CheckBox
+                android:id="@+id/cb1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ayam Goreng" />
 
-        <Button
-            android:id="@+id/circle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/circle" />
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:text="@string/zero" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/ellipse"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ellipse" />
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/cb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Soto" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="textEnd"
+                android:text="@string/zero" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
