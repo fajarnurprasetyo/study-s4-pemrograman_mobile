@@ -3,7 +3,6 @@ package in.blackant.helloworld;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,9 +36,7 @@ public class AboutActivity extends AppCompatActivity {
             final BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open("README.md")));
             final Markwon markwon = Markwon.builder(this)
                     .usePlugin(HtmlPlugin.create())
-                    .usePlugin(ImagesPlugin.create(plugin -> {
-                        plugin.addMediaDecoder(SvgMediaDecoder.create());
-                    }))
+                    .usePlugin(ImagesPlugin.create(plugin -> plugin.addMediaDecoder(SvgMediaDecoder.create())))
                     .build();
             final StringBuilder stringBuilder = new StringBuilder();
             String line;

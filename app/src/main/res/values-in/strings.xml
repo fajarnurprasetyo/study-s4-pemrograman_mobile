@@ -4,4 +4,17 @@
     <string name="send">Kirim %d</string>
     <string name="type_message">Ketik pesan</string>
     <string name="about">Tentang</string>
+    <string name="rectangle">Persegi Panjang</string>
+    <string name="triangle">Segi Tiga</string>
+    <string name="circle">Lingkaran</string>
+    <string name="width">Lebar</string>
+    <string name="length">Panjang</string>
+    <string name="base">Alas</string>
+    <string name="height">Tinggi</string>
+    <string name="radius">Radius</string>
+    <string name="result">Hasil:</string>
+    <string name="ellipse">Elips</string>
+    <string name="radius_1">Radius 1</string>
+    <string name="radius_2">Radius 2</string>
+    <string name="parallelogram">Jajar Genjang</string>
 </resources>

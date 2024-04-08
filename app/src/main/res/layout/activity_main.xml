@@ -28,67 +28,40 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout
-        android:id="@+id/inputContainer"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbar">
-
-        <EditText
-            android:id="@+id/input"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/type_message"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:textColor="@color/black" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/send1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/send"
-                tools:ignore="ButtonStyle" />
-
-            <Button
-                android:id="@+id/send2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text="@string/send"
-                tools:ignore="ButtonStyle" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/result_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputContainer">
+        app:layout_constraintTop_toBottomOf="@+id/appbar">
 
-        <TextView
-            android:id="@+id/result"
+        <Button
+            android:id="@+id/rectangle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="@string/rectangle" />
+
+        <Button
+            android:id="@+id/triangle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/triangle" />
+
+        <Button
+            android:id="@+id/circle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/circle" />
+
+        <Button
+            android:id="@+id/ellipse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ellipse" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
